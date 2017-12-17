@@ -48,11 +48,11 @@ for seq_record in SeqIO.parse(handle, "fasta"):
     identifiers.append(identifier)
     sequences.append(str(sequence))
 
-    print "processing ", identifier
-    print >>f_out, identifier
-    print >>f_out, sequence
-    print >>fasta_out, identifier
-    print >>fasta_out, sequence
+    print("processing ", identifier)
+    print(identifier, file=f_out)
+    print(sequence, file=f_out)
+    print(identifier, file=fasta_out)
+    print(sequence, file=fasta_out)
 
     br.select_form("form1")
     sequence_input = br.form.find_control("textarea")
@@ -64,17 +64,17 @@ for seq_record in SeqIO.parse(handle, "fasta"):
     email.value = Entrez.email
 
     response = br.submit()
-    print "submitted at ", datetime.datetime.now()
-    print >>f_out, datetime.datetime.now()
-    print >>f_out, response.read()
+    print("submitted at ", datetime.datetime.now())
+    print(datetime.datetime.now(), file=f_out)
+    print(response.read(), file=f_out)
     br.back()
 
     time.sleep(60)
 
 handle.close()
 
-print "all done!"
-print >>f_out, "all done!"
+print("all done!")
+print("all done!", file=f_out)
 
 # send to form
 

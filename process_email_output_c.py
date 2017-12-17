@@ -24,7 +24,7 @@ import imaplib
 import getpass
 import email
 import datetime
-import StringIO
+import io
 import csv
 import string
 
@@ -55,7 +55,7 @@ with open("Unique_FDR_CC.txt",'rU') as tsvfile:
     for line in tsvreader:
         fragment_dict[line[3]] = line[6]
 
-for key in fragment_dict.keys():
+for key in list(fragment_dict.keys()):
     #remove commas from values
     fragment_dict[key] = fragment_dict[key].replace(',','')
     #remove modifications from protein string
@@ -75,7 +75,7 @@ f4 = open('found_sites_unique_FDR_CC.txt','w')
 try:
     mail.login(email_id, getpass.getpass()) #login to email
 except imaplib.ImailAP4.error:
-    print "LOGIN FAILED!!! "
+    print("LOGIN FAILED!!! ")
     # exit or fail
 
 mail.select("inbox")
@@ -98,25 +98,25 @@ for raw_email in raw_emails:
             identifier = identifiers[index]
             sequence = seq
 
-    email_buffer = StringIO.StringIO(raw_email)
+    email_buffer = io.StringIO(raw_email)
 
-    print >>f4, identifier
-    print >>f4, sequence
+    print(identifier, file=f4)
+    print(sequence, file=f4)
 
 ## extracting matches and putting into output file.
 
     for line in email_buffer:
         n_term = ""
         if "*" in line:
-            print >>f4,line,
+            print(line, end=' ', file=f4)
             n_term = line.rstrip().split('*')[-1]
             count = 0
-            for key in fragment_dict.keys():
+            for key in list(fragment_dict.keys()):
                 if key.startswith(n_term):
-                    print >>f4,'\t\t\t\t\t',key, fragment_dict[key]
+                    print('\t\t\t\t\t',key, fragment_dict[key], file=f4)
                     count += 1
             if count == 0:
-                print >>f4, '\t\t\t\t\t',"No n-term fragments found."
+                print('\t\t\t\t\t',"No n-term fragments found.", file=f4)
             #print line.rstrip()[-9:]
 
     # print >>f4, identifier
