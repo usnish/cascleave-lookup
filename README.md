@@ -1,8 +1,8 @@
 # cascleave-lookup
 ## Requirements:
-Python >3.0
-Python packages noted in `requirements.txt`
-(preferred) Gmail account
+* Python >3.0
+* Python packages noted in `requirements.txt`
+* (preferred) Gmail account
 
 ## How to use?
 * Script #1: `lookup_c.py` -- this will take a list of GenInfo Identifiers (gi #s), retrieve their associated amino acid sequences from NCBI, and then run them through the [CasCleave algorithm hosted by Kyoto University](http://sunflower.kuicr.kyoto-u.ac.jp/~sjn/Cascleave/webserver.html). You will need to change `Entrez.email = "******@*****.***"` to your email. Make sure you have an NCBI account with this email, and expect to recieve cascleave results at this email address soon after the script completes its run.
