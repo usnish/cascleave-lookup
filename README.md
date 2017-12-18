@@ -13,4 +13,4 @@
 
 ## Citation:
 Victor KG, Heffron DS, Sokolowski JD, Majumdar U, Leblanc A, Mandell JW. 
-Proteomic identification of synaptic caspase substrates. Synapse . 2018;72(1).
+Proteomic identification of synaptic caspase substrates. Synapse. 2018; 72(1).
